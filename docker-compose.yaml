@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: loja_online
+      MYSQL_DATABASE: sistema_academia
       MYSQL_USER: usuario
       MYSQL_PASSWORD: senha123
     ports:
