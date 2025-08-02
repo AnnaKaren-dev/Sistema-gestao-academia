@@ -4,6 +4,5 @@ O MER foi desenvolvido para representar as **entidades** e seus **relacionamento
 
 - Cadastro e controle de **membros**, **instrutores** e **unidades**;
 - Gerenciamento de **assinaturas**, **check-ins**, **pagamentos** e **aulas**;
-- Geração de **relatórios analíticos** com base nos dados transacionais.
 
 ### Diagrama
