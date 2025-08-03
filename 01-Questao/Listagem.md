@@ -14,42 +14,55 @@
 
 ---
 
-CREATE TABLE unidades (
-id_unidade INT PRIMARY KEY AUTO_INCREMENT, -- Identificador único para cada unidade  
- nome_unidade VARCHAR(60) NOT NULL, -- Nome da unidade de fitness
-endereco VARCHAR(150) NOT NULL, -- Endereço físico da unidade
-horario_funcionamento VARCHAR(30) NOT NULL, -- Horário de funcionamento da unidade
-capacidade_maxima INT NOT NULL, -- Capacidade máxima
-ativa BOOLEAN DEFAULT TRUE, -- Indica se a unidade está ativa
-);
-
-CREATE TABLE membros (
-id_membro INT PRIMARY KEY AUTO_INCREMENT, -- Identificador único para cada membro
-nome_completo VARCHAR(80) NOT NULL, -- Nome completo do membro
-email VARCHAR(60) UNIQUE NOT NULL, -- E-mail único do membro
-telefone VARCHAR(15) NOT NULL, -- Telefone de contato do membro.
-data_nascimento DATE NOT NULL, -- Data de nascimento
-data_cadastro DATE DEFAULT (CURDATE()), --Data de cadastro  
- status_membro ENUM('ativo', 'suspenso', 'cancelado') DEFAULT 'ativo'-- Status do membro.
-);
+  CREATE TABLE unidades (
+  id_unidade INT PRIMARY KEY AUTO_INCREMENT, -- Identificador único para cada unidade
+  
+  nome_unidade VARCHAR(60) NOT NULL, -- Nome da unidade de fitness
+  
+  endereco VARCHAR(150) NOT NULL, -- Endereço físico da unidade
+  
+  horario_funcionamento VARCHAR(30) NOT NULL, -- Horário de funcionamento da unidade
+  
+  capacidade_maxima INT NOT NULL, -- Capacidade máxima
+  
+  ativa BOOLEAN DEFAULT TRUE, -- Indica se a unidade está ativa
+  );
+  
+  CREATE TABLE membros (
+  id_membro INT PRIMARY KEY AUTO_INCREMENT, -- Identificador único para cada membro
+  
+  nome_completo VARCHAR(80) NOT NULL, -- Nome completo do membro
+  
+  email VARCHAR(60) UNIQUE NOT NULL, -- E-mail único do membro
+  
+  telefone VARCHAR(15) NOT NULL, -- Telefone de contato do membro.
+  
+  data_nascimento DATE NOT NULL, -- Data de nascimento
+  
+  data_cadastro DATE DEFAULT (CURDATE()), --Data de cadastro  
+  
+   status_membro ENUM('ativo', 'suspenso', 'cancelado') DEFAULT 'ativo'-- Status do membro.
+  );
+  
+  CREATE TABLE check_ins (
+   id_checkin INT PRIMARY KEY AUTO_INCREMENT,  -- Identificador único para cada check-in
+   
+   id_membro INT NOT NULL,                      -- Referência ao membro que realizou o check-in
+   
+   id_unidade INT NOT NULL,                     -- Referência à unidade onde o check-in foi realizado
+   
+   data_checkin DATETIME DEFAULT CURRENT_TIMESTAMP,  -- Data e hora em que o membro fez o check-in
+   
+   data_checkout DATETIME,                     -- Data e hora em que o membro fez o check-out (quando aplicável)
+   
+   FOREIGN KEY (id_membro) REFERENCES membros(id_membro),  -- Relaciona ao membro na tabela 'membros'
+   
+   FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade)  -- Relaciona à unidade na tabela 'unidades'
+      );
 
 ---
 
-    CREATE TABLE check_ins (
-        id_checkin INT PRIMARY KEY AUTO_INCREMENT,  -- Identificador único para cada check-in
-        id_membro INT NOT NULL,                      -- Referência ao membro que realizou o check-in
-        id_unidade INT NOT NULL,                     -- Referência à unidade onde o check-in foi realizado
-        data_checkin DATETIME DEFAULT CURRENT_TIMESTAMP,  -- Data e hora em que o membro fez o check-in
-        data_checkout DATETIME,                     -- Data e hora em que o membro fez o check-out (quando aplicável)
-        FOREIGN KEY (id_membro) REFERENCES membros(id_membro),  -- Relaciona ao membro na tabela 'membros'
-        FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade)  -- Relaciona à unidade na tabela 'unidades'
-    );
-
----
-
-- é possível ter um membro associado a uma unidade sem que ele tenha realizado nenhum check-in:
-
-### Explicação:
+### Explicação: é possível ter um membro associado a uma unidade sem que ele tenha realizado nenhum check-in
 
 - Relação entre Membros e Unidades:
   Não há uma obrigação automática que exige que um membro, ao ser associado a uma unidade, faça um check-in nessa unidade.
