@@ -12,7 +12,7 @@
 
 ## 📌 Relação entre as tabelas membros, assinatura, unidade e check-in:
 ---
-- CREATE TABLE unidades (
+ - CREATE TABLE unidades (
   id_unidade INT PRIMARY KEY AUTO_INCREMENT, -- Identificador único para cada unidade
   
   nome_unidade VARCHAR(60) NOT NULL, -- Nome da unidade de fitness
