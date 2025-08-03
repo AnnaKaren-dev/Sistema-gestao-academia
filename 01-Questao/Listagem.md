@@ -119,7 +119,7 @@ A tabela assinaturas ( associando membros e unidades) pode vincular um membro a 
 | `assinatura_inicio` | Data de início da assinatura                   |
 | `assinatura_fim`    | Data de término da assinatura                  |
 
-##📊 Resultado da Consulta:
+## 📊 Resultado da Consulta:
 
 - Liste o nome completo e email de todos os membros ativos que possuem assinatura ativa mas nunca fizeram check-in em nenhuma unidade.
 
