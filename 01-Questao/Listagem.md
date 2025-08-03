@@ -11,9 +11,7 @@
 - Sem nenhum registro de check-in (`c.id_checkin IS NULL`)
 
 ## 📌 Relação entre as tabelas membros, assinatura, unidade e check-in:
-
 ---
-
   CREATE TABLE unidades (
   id_unidade INT PRIMARY KEY AUTO_INCREMENT, -- Identificador único para cada unidade
   
@@ -59,8 +57,7 @@
    
    FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade)  -- Relaciona à unidade na tabela 'unidades'
       );
-
----
+  ---
 
 ### Explicação: é possível ter um membro associado a uma unidade sem que ele tenha realizado nenhum check-in
 
