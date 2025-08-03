@@ -57,9 +57,7 @@
    
    FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade)  -- Relaciona à unidade na tabela 'unidades'
       );
-  ---
-
-
+ 
 ### Explicação: é possível ter um membro associado a uma unidade sem que ele tenha realizado nenhum check-in
 
 - Relação entre Membros e Unidades:
