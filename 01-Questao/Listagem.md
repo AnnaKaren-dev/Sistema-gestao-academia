@@ -12,7 +12,7 @@
 
 ## 📌 Relação entre as tabelas membros, assinatura, unidade e check-in:
 ---
-  CREATE TABLE unidades (
+- CREATE TABLE unidades (
   id_unidade INT PRIMARY KEY AUTO_INCREMENT, -- Identificador único para cada unidade
   
   nome_unidade VARCHAR(60) NOT NULL, -- Nome da unidade de fitness
@@ -25,8 +25,8 @@
   
   ativa BOOLEAN DEFAULT TRUE, -- Indica se a unidade está ativa
   );
-  
-  CREATE TABLE membros (
+
+  - CREATE TABLE membros (
   id_membro INT PRIMARY KEY AUTO_INCREMENT, -- Identificador único para cada membro
   
   nome_completo VARCHAR(80) NOT NULL, -- Nome completo do membro
@@ -41,8 +41,8 @@
   
    status_membro ENUM('ativo', 'suspenso', 'cancelado') DEFAULT 'ativo'-- Status do membro.
   );
-  
-  CREATE TABLE check_ins (
+
+  -  CREATE TABLE check_ins (
    id_checkin INT PRIMARY KEY AUTO_INCREMENT,  -- Identificador único para cada check-in
    
    id_membro INT NOT NULL,                      -- Referência ao membro que realizou o check-in
