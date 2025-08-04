@@ -1,43 +1,12 @@
-# Instrutores da Mesma Unidade (exceto João Silva)
-
-Apresenta todos os **instrutores que trabalham na mesma unidade** que o instrutor **João Silva**, **excluindo o próprio João Silva** da listagem.
-
----
-
-## Critérios de Seleção
-
-- Selecionar o **ID da unidade** onde o instrutor `'João Silva'` trabalha.
-- Listar **todos os instrutores** que estão **nessa mesma unidade**.
-- Excluir `'João Silva'` do resultado final.
-
----
-
-## Relação com a Tabela `instrutores`
-
-```sql
-CREATE TABLE instrutores (
-    id_instrutor INT PRIMARY KEY AUTO_INCREMENT,              -- Identificador único do instrutor
-    nome_instrutor VARCHAR(80) NOT NULL,                      -- Nome completo do instrutor
-    especialidade VARCHAR(60),                                -- Especialidade ou área de atuação
-    id_unidade INT NOT NULL,                                  -- Unidade onde o instrutor atua
-    FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade)  -- Ligação com a tabela de unidades
-);
-```
-
----
-
 ## Consulta SQL
 
 ```sql
 SELECT nome_instrutor
 FROM instrutores
 WHERE
-    id_unidade = (
-        SELECT id_unidade
-        FROM instrutores
-        WHERE nome_instrutor = 'João Silva'
-    )
+    id_unidade = (SELECT id_unidade FROM instrutores WHERE nome_instrutor = 'João Silva')
     AND nome_instrutor <> 'João Silva';
+
 ```
 
 ---
@@ -73,7 +42,7 @@ WHERE
   Executada primeiro, essa subconsulta retorna o valor do `id_unidade` do João Silva (no exemplo, é `1`).
 
 - **`AND nome_instrutor <> 'João Silva'`**  
-  Segundo filtro: garante que o próprio João Silva não apareça na lista. O operador `<>` significa "diferente de".
+garante que o próprio João Silva não apareça na lista. O operador `<>` significa "diferente de".
 
 ---
 
