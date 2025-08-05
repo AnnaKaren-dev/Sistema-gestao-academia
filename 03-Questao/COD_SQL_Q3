@@ -1,0 +1,32 @@
+SELECT
+    u.nome_unidade AS unidade,
+    COUNT(DISTINCT m.id_membro) AS total_membros_ativos,
+    COALESCE(SUM(pg.valor_pago), 0) AS receita_total,
+ ROUND(COALESCE(SUM(pg.valor_pago), 0) / NULLIF(COUNT(DISTINCT m.id_membro), 0), 2) AS receita_media_por_membro,
+    COUNT(c.id_checkin) AS total_checkins
+
+FROM unidades u
+LEFT JOIN assinaturas a ON a.id_unidade = u.id_unidade AND a.status_assinatura = 'ativa'
+LEFT JOIN membros m ON m.id_membro = a.id_membro AND m.status_membro = 'ativo'
+LEFT JOIN pagamentos pg ON pg.id_assinatura = a.id_assinatura AND pg.status_pagamento = 'pago'
+LEFT JOIN check_ins c ON c.id_membro = m.id_membro AND c.id_unidade = u.id_unidade
+
+GROUP BY u.id_unidade
+ORDER BY receita_total DESC;
+
+///////////////////////////////////END/////////////////////////////////////////////
+
+Resumo da Consulta SQL:
+Para cada unidade da academia, o SELECT retorna as seguintes informações:
+
+Nome da unidade (u.nome_unidade).
+
+Total de membros ativos vinculados a assinaturas ativas naquela unidade.
+
+Receita total gerada por pagamentos confirmados dessas assinaturas.
+
+Receita média por membro ativo, calculada dividindo a receita total pelo número de membros ativos.
+
+Total de check-ins realizados por esses membros na respectiva unidade.
+
+
